@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Member Dashboard - Gym Membership Management</title>
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/dashboard.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+  <div class="dashboard-container">
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <div class="sidebar-header">
+        <div class="sidebar-logo">💪 GymApp</div>
+      </div>
+      <nav class="sidebar-nav">
+        <a href="#" class="nav-item active" data-section="overview">Overview</a>
+        <a href="#" class="nav-item" data-section="checkin">Check In</a>
+        <a href="#" class="nav-item" data-section="workout">Workout Plan</a>
+        <a href="#" class="nav-item" data-section="attendance">Attendance</a>
+        <a href="#" class="nav-item" data-section="profile">Profile</a>
+        <a href="#" class="nav-item nav-logout">Logout</a>
+      </nav>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+      <div class="topbar">
+        <h1 class="topbar-title">Member Dashboard</h1>
+        <div class="topbar-user">
+          <div class="user-info">
+            <div class="user-name" id="user-name">Loading...</div>
+            <div class="user-role">Member</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Overview Section -->
+      <section id="overview-section" class="dashboard-section">
+        <div class="kpi-grid">
+          <div class="kpi-card">
+            <div class="kpi-label">Current Plan</div>
+            <div class="kpi-value" id="current-plan">-</div>
+            <div class="kpi-change" id="plan-status">-</div>
+          </div>
+          <div class="kpi-card">
+            <div class="kpi-label">Days Remaining</div>
+            <div class="kpi-value" id="days-remaining">-</div>
+            <div class="kpi-change" id="next-payment">-</div>
+          </div>
+          <div class="kpi-card">
+            <div class="kpi-label">This Month Check-ins</div>
+            <div class="kpi-value" id="month-checkins">-</div>
+            <div class="kpi-change">Keep it up!</div>
+          </div>
+          <div class="kpi-card">
+            <div class="kpi-label">Assigned Trainer</div>
+            <div class="kpi-value" id="assigned-trainer">-</div>
+            <div class="kpi-change" id="trainer-specialty">-</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Check-in Section -->
+      <section id="checkin-section" class="dashboard-section" style="display: none;">
+        <div class="checkin-card">
+          <h2>Check In Today</h2>
+          <p>Record your attendance with a photo or manual check-in</p>
+          <div class="checkin-buttons">
+            <button class="btn btn-primary btn-checkin-camera">📷 Check-in with Camera</button>
+            <button class="btn btn-secondary btn-checkin-file">📁 Upload Photo</button>
+            <button class="btn btn-success btn-checkin-manual">✓ Manual Check-in</button>
+          </div>
+        </div>
+      </section>
+
+      <!-- Workout Plan Section -->
+      <section id="workout-section" class="dashboard-section" style="display: none;">
+        <div class="card">
+          <div class="card-header">My Workout Plan</div>
+          <div id="workout-plan-content">
+            <div class="spinner"></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Attendance Section -->
+      <section id="attendance-section" class="dashboard-section" style="display: none;">
+        <div class="card">
+          <div class="card-header">Attendance History</div>
+          <div class="chart-container">
+            <div class="chart-title">Weekly Check-ins</div>
+            <canvas id="attendance-chart"></canvas>
+          </div>
+          <div class="table-container">
+            <table class="table">
+              <thead>
+                <tr>
+                  <th>Date</th>
+                  <th>Time</th>
+                  <th>Method</th>
+                  <th>Photo</th>
+                </tr>
+              </thead>
+              <tbody id="attendance-table-body">
+                <tr><td colspan="4" style="text-align: center;">Loading...</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- Profile Section -->
+      <section id="profile-section" class="dashboard-section" style="display: none;">
+        <div class="card">
+          <div class="card-header">My Profile</div>
+          <form id="profile-form">
+            <div class="form-group">
+              <label class="form-label">Name</label>
+              <input type="text" id="profile-name" class="form-input" required>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Email</label>
+              <input type="email" id="profile-email" class="form-input" readonly>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Phone</label>
+              <input type="tel" id="profile-phone" class="form-input">
+            </div>
+            <div class="form-group">
+              <label class="form-label">Date of Birth</label>
+              <input type="date" id="profile-dob" class="form-input">
+            </div>
+            <div class="form-group">
+              <label class="form-label">Emergency Contact Name</label>
+              <input type="text" id="profile-emergency-name" class="form-input">
+            </div>
+            <div class="form-group">
+              <label class="form-label">Emergency Contact Phone</label>
+              <input type="tel" id="profile-emergency-phone" class="form-input">
+            </div>
+            <button type="submit" class="btn btn-primary">Save Changes</button>
+          </form>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <div id="toast-container" class="toast-container"></div>
+
+  <script src="../js/api.js"></script>
+  <script src="../js/auth.js"></script>
+  <script src="../js/utils.js"></script>
+  <script src="member-dashboard.js"></script>
+</body>
+</html>
+
