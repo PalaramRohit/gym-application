@@ -91,3 +91,7 @@
     }
   });
 })();
+
+git remote remove origin
+git remote add origin https://github.com/PalaramRohit/gym-application.git
+git push -u origin main
